@@ -1,0 +1,8 @@
+(fp_lib_table
+  (lib (name rpiZ-footprint)(type KiCad)(uri ${KIPRJMOD}/Library/ADA3708/footprints)(options "")(descr ""))
+  (lib (name TeensyFootprints)(type KiCad)(uri ${KIPRJMOD}/Library/Teensy/TeensyFootprints)(options "")(descr ""))
+  (lib (name dmcginnis427)(type KiCad)(uri ${KIPRJMOD}/Library/dmcginnis427/dmcginnis427.pretty)(options "")(descr ""))
+  (lib (name 74HCT86D)(type KiCad)(uri ${KIPRJMOD}/Library/74HCT86D)(options "")(descr ""))
+  (lib (name LM293D)(type KiCad)(uri ${KIPRJMOD}/Library/LM293D)(options "")(descr ""))
+  (lib (name TLV2462ID)(type KiCad)(uri ${KIPRJMOD}/Library/TLV2462ID)(options "")(descr ""))
+)

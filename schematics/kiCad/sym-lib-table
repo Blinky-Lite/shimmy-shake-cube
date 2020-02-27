@@ -1,0 +1,10 @@
+(sym_lib_table
+  (lib (name ADA3708)(type Legacy)(uri ${KIPRJMOD}/Library/ADA3708/symbols/ADA3708.lib)(options "")(descr ""))
+  (lib (name teensy)(type Legacy)(uri ${KIPRJMOD}/Library/Teensy/symbols/teensy.lib)(options "")(descr ""))
+  (lib (name dmcginnis427)(type Legacy)(uri ${KIPRJMOD}/Library/dmcginnis427Symbols/dmcginnis427.lib)(options "")(descr ""))
+  (lib (name 74HCT86D)(type Legacy)(uri ${KIPRJMOD}/Library/74HCT86D/74HCT86D.lib)(options "")(descr ""))
+  (lib (name LM293D)(type Legacy)(uri ${KIPRJMOD}/Library/LM293D/LM293D.lib)(options "")(descr ""))
+  (lib (name TLV2462ID)(type Legacy)(uri ${KIPRJMOD}/Library/TLV2462ID/TLV2462ID.lib)(options "")(descr ""))
+  (lib (name LMV321__)(type Legacy)(uri ${KIPRJMOD}/Library/LMV321__/LMV321__.lib)(options "")(descr ""))
+  (lib (name ultraNcabV2-rescue)(type Legacy)(uri ${KIPRJMOD}/ultraNcabV2-rescue.lib)(options "")(descr ""))
+)
