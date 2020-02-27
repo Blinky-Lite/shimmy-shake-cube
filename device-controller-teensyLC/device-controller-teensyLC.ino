@@ -1,6 +1,6 @@
 #define FFTPTS 512
 #define FFTPTS2 1024
-#define WRITEBUFFSIZ 5008
+#define WRITEBUFFSIZ 5012
 #define BAUDRATE 115200
 
 const int pwmPin = 6;
@@ -39,6 +39,7 @@ struct Readings
  int ultraAmp;
  int freqOffset;
  int sampleInterval;
+ int check;
 };
 Readings readings;
 
@@ -46,6 +47,7 @@ struct Settings
 {
   int freqOffset;
   int sampleInterval;
+  int check;
 };
 Settings settings;
 
@@ -53,7 +55,9 @@ void setup()
 {
   readyToReceiveFlag = false;
   readings.freqOffset = 0;
-  readings.sampleInterval = 8000;
+  readings.sampleInterval = 2000;
+  settings.check = -1;
+  readings.check = WRITEBUFFSIZ;
 
   
   analogWriteResolution(pwmResolution);
@@ -134,9 +138,6 @@ void loop()
         readings.number[ii] = 0;
         readings.number[ii + FFTPTS] = 0;
       }
-      ledPinValue = !ledPinValue;
-      digitalWrite(ledPin, ledPinValue);
-      digitalWrite(blueLedPin, ledPinValue);
       
 
       ifftCounterI = 0;
@@ -147,21 +148,27 @@ void loop()
   }
   if (!readyToReceiveFlag)
   {
-    while (Serial1.available() > 0)
+    if (Serial1.available() > 0)
     {
-      Serial1.readBytes((uint8_t*) &settings, 8);
-      
-      readings.sampleInterval = settings.sampleInterval;
-      if (readings.freqOffset != settings.freqOffset)
+      Serial1.readBytes((uint8_t*) &settings, 12);
+      if (settings.check == 12)
       {
-        analogWriteFrequency(pwmPin, pwmFrequency + settings.freqOffset);
+        readings.sampleInterval = settings.sampleInterval;
+        if (readings.freqOffset != settings.freqOffset)
+        {
+          analogWriteFrequency(pwmPin, pwmFrequency + settings.freqOffset);
+        }
+        readings.freqOffset = settings.freqOffset;
+        lastWriteTime = micros();
+        timeCounter = (unsigned long) (readings.sampleInterval);
+        sampleCounter = 0.0;
+        ledPinValue = !ledPinValue;
+        digitalWrite(ledPin, ledPinValue);
+        digitalWrite(blueLedPin, ledPinValue);
+        settings.check = -1;
       }
-      readings.freqOffset = settings.freqOffset;
-      readyToReceiveFlag = true;
-      lastWriteTime = micros();
-      timeCounter = (unsigned long) (readings.sampleInterval);
-      sampleCounter = 0.0;
     }
+    readyToReceiveFlag = true;
   } 
 }
 void pwmRisePinHandler()
