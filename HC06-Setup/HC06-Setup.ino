@@ -21,7 +21,7 @@ char commandChar[32];
 void setup()
 {
   Serial.begin(9600);
-  Serial1.begin(9600);
+  Serial1.begin(115200);
   sendATCommand(at); 
 //  sendATCommand(deviceName);
 //  sendATCommand(password);
