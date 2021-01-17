@@ -1,2 +1,2 @@
-# shimmy-shake-cube
+# blinky-shiver-cube
 
